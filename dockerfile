@@ -1,18 +1,5 @@
-# Use official Node.js image as base (replace as per your stack)
-FROM node:18
+# Use Nginx to serve the static HTML
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
-
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy rest of the code
-COPY . .
-
-# Expose port (optional)
-EXPOSE 3000
-
-# Start the app
-CMD ["npm", "start"]
+# Copy index.html into the default Nginx location
+COPY index.html /usr/share/nginx/html/index.html
